@@ -1,29 +1,70 @@
+<!-- 默认情况 -->
 {{- $img_destination := .Destination -}}
+
+<!-- 计算文件绝对路径 -->
+<!-- dest = ./image.png -->
+{{ if (hasPrefix $img_destination "./") }}
+<!-- img_dest = .././image.png -->
+{{ $img_destination = (print "../" (path.Join $img_destination)) }}
+<!-- img_dest = /posts/<year>/<month>/<date>/<post_name>/.././image.png -->
+{{ $img_destination = (print (path.Join .Page.RelPermalink $img_destination))}}
+{{ end }}
+
+<!-- 计算文件绝对路径 -->
+
+<!-- CDN START -->
+<!-- 是否开启 CDN 选项 -->
 {{- if (and .Page.Site.Params.image_cdn.enable (not .Page.Site.IsServer)) -}}
-    {{if hasPrefix .Destination "/" }}
-    {{ $img_destination = (print .Page.Site.Params.image_cdn.HOST .Destination) }}
-    {{ else if not (hasPrefix .Destination "http") }}
-    {{ $img_destination = (print .Page.Site.Params.image_cdn.HOST (path.Join .Page.RelPermalink .Destination)) }}
-    {{ end }}
+<!-- 文件不以 http 开头 -->
+{{ if not (hasPrefix $img_destination "http") }}
+<!-- image_cdn + /path/to/image.png -->
+{{ $img_destination = (print .Page.Site.Params.image_cdn.host (path.Join $img_destination)) }}
+{{ end }}
 {{- end -}}
+<!-- CDN END -->
+
+<!--
+0. 默认情况:  
+      (1) 包含 http(s) 开头。 (2) / 绝对路径开头。 ： 保持默认情况
+      (3) ./ 本地路径: 重点处理
+      (4) ../ 上级相对路径: 这种不处理。
+  $img_destination = .Destination
+
+1. 计算当前路径的 “绝对路径”。
+是否以 ./ 开头：
+  假设文件名为 ./image_name.png
+  是： 表示在 markdown 中引用的是当前目录下的相对路径。 
+      1. 文件名增加 上级 路径。 
+          $img_dest = .././image_name.png
+      2. 计算绝对路径:
+          $img_dest = abspath($image_dest)
+          即
+          $img_dest = /posts/2022/12/23/<post_name>/../image_name.png
+
+2. 是否开启 CDN
+  是：
+    1. 是否以 http 开头。
+      否：
+        $img_destination = image_cdn.host + $img_destination
+ -->
 
 {{- if .Title -}}
 <figure class="max-w-2xl mx-auto overflow-hidden">
-    {{if .Page.Site.Params.fancybox }}
-    <a data-fancybox="gallery" href="{{ $img_destination | safeURL }}">
-        <img alt="{{ $.Text }}" src="{{ $img_destination | safeURL }}" />
-    </a>
-    {{ else }}
-        <img alt="{{ $.Text }}" src="{{ $img_destination | safeURL }}" />
-    {{ end }}
-    <figcaption class="p-2 text-center">{{ with $.Title | safeHTML }}{{ . }}{{ end }}</figcaption>
+  {{if .Page.Site.Params.fancybox }}
+  <a data-fancybox="gallery" href="{{ $img_destination | safeURL }}">
+    <img alt="{{ $.Text }}" src="{{ $img_destination | safeURL }}" />
+  </a>
+  {{ else }}
+  <img alt="{{ $.Text }}" src="{{ $img_destination | safeURL }}" />
+  {{ end }}
+  <figcaption class="p-2 text-center">{{ with $.Title | safeHTML }}{{ . }}{{ end }}</figcaption>
 </figure>
 {{- else -}}
-    {{if .Page.Site.Params.fancybox }}
-        <a data-fancybox="gallery" href="{{ $img_destination | safeURL }}">
-            <img class="mx-auto" alt="{{ $.Text }}" src="{{ $img_destination | safeURL }}" />
-        </a>
-    {{ else }}
-        <img class="mx-auto" alt="{{ $.Text }}" src="{{ $img_destination | safeURL }}" />   
-    {{ end }}
+{{if .Page.Site.Params.fancybox }}
+<a data-fancybox="gallery" href="{{ $img_destination | safeURL }}">
+  <img class="mx-auto" alt="{{ $.Text }}" src="{{ $img_destination | safeURL }}" />
+</a>
+{{ else }}
+<img class="mx-auto" alt="{{ $.Text }}" src="{{ $img_destination | safeURL }}" />
+{{ end }}
 {{- end -}}
