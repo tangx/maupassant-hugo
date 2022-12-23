@@ -29,14 +29,21 @@
 
     {{ partial "related" . }}
 
-    <blockquote>
-      <p>本文为原创文章，转载注明出处,欢迎扫码关注公众号<code style="background-color: 
-      #E8E8E9;">justops</code>或者网站 <span style="background-color: 
-      #E8E8E9;"><a href="https://tangx.in/">https://tangx.in/</a></span>
-        ，第一时间看后续精彩文章。觉得好的话，请猛击文章右下角「在看」，感谢支持。</p>
-    </blockquote>
-
-    <img src="https://tangx.in/assets/images/wx-qrcode.png" />
+    <div class="like-me">
+      <blockquote>
+        <p>本文为原创文章，转载注明出处,欢迎扫码关注公众号
+          <span style="background-color: #E8E8E9;">
+            <code>maitalking</code>
+          </span>
+          或者网站
+          <span style="background-color: #E8E8E9;">
+            <a href="https://tangx.in/">https://tangx.in/</a>
+          </span>
+          ，第一时间看后续精彩文章。觉得好的话，请猛击文章右下角「在看」，感谢支持。
+        </p>
+      </blockquote>
+      <img src="https://tangx.in/assets/images/wx-qrcode.png" />
+    </div>
 
     <div class="post-meta meta-tags">
       {{ if and (isset .Params "tags") .Params.tags }}
