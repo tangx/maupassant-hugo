@@ -208,6 +208,16 @@ type: archives
 
 以上配置中的备案信息要换成自己的
 
+#### 配置微信公众号订阅信息
+
+添加微信公众号订阅信息。 微信公众号名称和公众号二维码。
+
+```toml
+[params.follow]
+    mp_name = "maitalking"
+    mp_qrcode = "/assets/images/wx-qrcode.png"
+```
+
 #### 图片点击放大
 
 将会引入jquery.js 和 fancybox 的css和js

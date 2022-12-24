@@ -119,13 +119,14 @@ blockquote {
     padding: 0 0 0 50px;
     color: #555;
     border-left: none;
+    background-color: #FBF9FD;
 }
 blockquote::before{
     content: "\201C";
     display: block;
     font-family: times;
     font-style: normal;
-    font-size: 48px;
+    font-size: 36px;
     color: #444;
     font-weight: bold;
     line-height: 30px;

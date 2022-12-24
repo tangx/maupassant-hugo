@@ -1,0 +1,21 @@
+{{ if and (isset .Site.Params "follow") (in (slice "post" "posts") .Type) }}
+<div class="post-archive">
+  <ul class="post-copyright">
+    <img src="{{.Site.Params.follow.mp_qrcode}}" />
+    <br>
+    <li>本文为原创文章，转载注明出处,欢迎 <strong>扫码关注公众号</strong>
+      <span style="background-color: #E8E8E9;">
+        <!-- <code>maitalking</code> -->
+        <code>{{.Site.Params.follow.mp_name}}</code>
+      </span>
+      或 <strong>订阅网站</strong>
+      <span style="background-color: #E8E8E9;">
+        <a href="{{ .Site.BaseURL}}">{{ .Site.BaseURL}}</a>
+      </span>
+      。
+    </li>
+    <li>第一时间看后续精彩文章。觉得好的话，请猛击文章右下角「在看」，感谢支持。</li>
+  </ul>
+  <br>
+</div>
+{{end}}
