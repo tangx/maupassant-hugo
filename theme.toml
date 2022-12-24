@@ -12,7 +12,12 @@ tags = ["maupassant"]
 features = ["Tag","Category","Menu","Recent Post","Archives"]
 min_version = "0.30"
 
+
 [author]
+  name = "老麦"
+  homepage = "https://tangx.in"
+
+[originauthor2]
   name = "飞雪无情"
   homepage = "https://www.flysnow.org"
 

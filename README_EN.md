@@ -1,7 +1,7 @@
 # Maupassant
 Maupassant theme, ported to Hugo.
 
-1. Preview: [flysnow blog](http://www.flysnow.org)
+1. Preview: [maitalking](http://tangx.in)
 2. [中文文档](README.md)
 
 A simple Hugo template with great performance on different devices, ported from a Typecho theme by [Cho](https://github.com/pagecho/maupassant/), forked and modified from [JokerQyou](https://github.com/JokerQyou/maupassant-hugo).
@@ -20,7 +20,7 @@ Hugo Version >= v 0.60.0
 
 ```bash
 cd <YOUR Bolg Root Dir>
-git clone https://github.com/flysnow-org/maupassant-hugo themes/maupassant
+git clone https://github.com/tangx/maupassant-hugo themes/maupassant
 ```
 
 ## Configuration
@@ -117,7 +117,7 @@ Now ,run `hugo server` and try local search.
   img = "https://img.alicdn.com/tfs/TB1aDXhXpzqK1RjSZFvXXcB7VXa-259-194.jpg"
 ```
 
-Ads Preview [http://www.flysnow.org/](http://www.flysnow.org/)
+Ads Preview [http://tangx.in/](http://tangx.in/)
 
 #### Google Analytics
 

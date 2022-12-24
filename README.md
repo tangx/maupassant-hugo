@@ -2,7 +2,7 @@
 
 Maupassant theme, ported to Hugo.
 
-1. 预览效果:[飞雪无情的博客](http://www.flysnow.org)
+1. 预览效果:[老麦的书房](http://tangx.in)
 2. [English Docs](README_EN.md)
 
 一款非常简洁、性能高的Hugo主题，适配不同的设备（PC，Mobile等）。 主要是基于 Typecho [Cho](https://github.com/pagecho/maupassant/), 从 [JokerQyou](https://github.com/JokerQyou/maupassant-hugo) forked，修改和添加了很多功能而成，如GA统计、最近的文章、标签云、自定义菜单、按日期归档等 .
@@ -44,7 +44,7 @@ Maupassant theme, ported to Hugo.
 
 ```bash
 cd <YOUR Bolg Root Dir>
-git clone https://github.com/flysnow-org/maupassant-hugo themes/maupassant
+git clone https://github.com/tangx/maupassant-hugo themes/maupassant
 ```
 
 ## 配置
@@ -174,7 +174,7 @@ type: "search"
 
 `params.ads`是一个数组，所以我们可以自定义很多广告。如果`img`存在，则优先使用图片广告,`title`表示鼠标悬停在广告链接时，显示的文本。
 
-具体效果参考 [http://www.flysnow.org/](http://www.flysnow.org/)
+具体效果参考 [http://tangx.in/](http://tangx.in/)
 
 #### 添加GA分析统计
 
