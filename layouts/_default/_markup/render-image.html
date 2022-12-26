@@ -1,7 +1,28 @@
-<!-- 默认情况 -->
+<!-- 1. 变量赋值 -->
+<!-- 1.1. 默认情况， 获取图片的定义地址 -->
+<!-- ./image.png -->
+<!-- /static/img/image.png -->
+<!-- http://example.com/path/to/image.png -->
 {{- $img_destination := .Destination -}}
 
-<!-- 计算文件绝对路径 -->
+<!-- 1.2. 网站 BaseURL 与 文件相对路径 -->
+<!-- https://discourse.gohugo.io/t/solved-what-should-be-used-for-the-value-of-site-baseurl/5896/3 -->
+{{- $site_url := .Page.Site.BaseURL -}}
+{{- $rel_url := $site_url | relURL}}
+
+<!-- 2. 去除 prefix， 并添加 **没有域名的 BaseURL ** -->
+{{ if and (isset .Page.Site.Params "static_prefix") }}
+{{ $prefix := .Page.Site.Params.static_prefix.name }}
+<!-- img_destination = /prefix/static/image.png -->
+{{ if (hasPrefix $img_destination $prefix )}}
+<!-- img_destination = /static/image.png -->
+{{ $img_destination = (strings.TrimPrefix $prefix $img_destination ) }}
+<!-- img_destination = /path/to/static/image.png -->
+{{ $img_destination = (print (path.Join $rel_url $img_destination))}}
+{{ end }}
+{{ end }}
+
+<!-- 3. 计算文件绝对路径 -->
 <!-- dest = ./image.png -->
 {{ if (hasPrefix $img_destination "./") }}
 <!-- img_dest = .././image.png -->
@@ -10,9 +31,8 @@
 {{ $img_destination = (print (path.Join .Page.RelPermalink $img_destination))}}
 {{ end }}
 
-<!-- 计算文件绝对路径 -->
 
-<!-- CDN START -->
+<!-- 4.  开启 CDN -->
 <!-- 是否开启 CDN 选项 -->
 {{- if (and .Page.Site.Params.image_cdn.enable (not .Page.Site.IsServer)) -}}
 <!-- 文件不以 http 开头 -->
