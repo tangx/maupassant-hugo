@@ -1,12 +1,14 @@
 {{ with .Site.Params.links }}
 <section class="widget">
-    <h3 class="widget-title">{{ i18n "links" }}</h3>
-    <ul class="widget-list">
-        {{ range . }}
-        <li>
-            <a target="_blank" href="{{ .url }}" title="{{ .title }}">{{ .name }}</a>
-        </li>
-        {{ end }}
-    </ul>
+  <h3 class="widget-title">{{ i18n "links" }}</h3>
+  <ul class="widget-list">
+    {{ range . }}
+    <li>
+      <a target="_blank" href="{{ .url }}" title="{{ .title }}">@{{ .name }} <span
+          style="color: lightsteelblue; font-size: 12px;">{{.desc
+          }}</span></a>
+    </li>
+    {{ end }}
+  </ul>
 </section>
 {{ end }}
