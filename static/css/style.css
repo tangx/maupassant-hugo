@@ -80,8 +80,10 @@ img{
     width: auto;
     height: auto;
     max-width: 100%;
-    max-height: 100%;	
+    max-height: 100%;
+    filter: drop-shadow(2px 4px 8px #5d5d5f);
 }
+
 a, button.submit {
     color:#6E7173;
     text-decoration:none;
@@ -988,6 +990,7 @@ img.alignright {
     background: #F8F8F8;
     border-bottom-color: #D26911; 
 }
+
 /* 版权声明 */
 .post-copyright {
     margin: 2em 0 0;
@@ -998,6 +1001,10 @@ img.alignright {
 }
 .post-copyright a {
     border-bottom: 1px solid #999;
+}
+
+.post-copyright img{
+    width: 65%;
 }
 
 /* table*/

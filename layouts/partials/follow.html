@@ -3,7 +3,10 @@
   <ul class="post-copyright">
     <img src="{{.Site.Params.follow.mp_qrcode}}" />
     <br>
-    <li>本文为原创文章，转载注明出处,欢迎 <strong>扫码关注公众号</strong>
+    <li><strong>{{ i18n "Copyright_link" }}</strong><a href="{{ .Permalink}}">{{
+        .Permalink}}</a></li>
+    <li>本文为原创文章，转载注明出处。 </li>
+    <li>欢迎 <strong>扫码关注公众号</strong>
       <span style="background-color: #E8E8E9;">
         <!-- <code>maitalking</code> -->
         <code>{{.Site.Params.follow.mp_name}}</code>
@@ -15,6 +18,7 @@
       。
     </li>
     <li>第一时间看后续精彩文章。觉得好的话，请猛击文章右下角「在看」，感谢支持。</li>
+    <li style="word-break:break-all"></li>
   </ul>
   <br>
 </div>
