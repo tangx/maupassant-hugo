@@ -38,8 +38,10 @@
 {{ if (not .Page.Site.IsServer) }}
     <!-- 4. 图片压缩后缀 -->
     {{ if $image_handler.compress_png_suffix }}
-        {{ if (strings.HasSuffix $img_destination ".png") }}
-            {{ $img_destination = (replace $img_destination ".png" $image_handler.compress_png_suffix) }}
+        {{ if not (hasPrefix $img_destination "http") }}
+            {{ if (strings.HasSuffix $img_destination ".png") }}
+                {{ $img_destination = (replace $img_destination ".png" $image_handler.compress_png_suffix) }}
+            {{ end }}
         {{ end }}
     {{ end }}
 
