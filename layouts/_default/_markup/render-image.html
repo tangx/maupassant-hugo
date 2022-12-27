@@ -34,23 +34,26 @@
     {{ $img_destination = (print (path.Join .Page.RelPermalink $img_destination))}}
 {{ end }}
 
-<!-- 4. 图片压缩后缀 -->
-{{ if $image_handler.compress_png_suffix }}
-    {{ if (strings.HasSuffix $img_destination ".png") }}
-        {{ $img_destination = (replace $img_destination ".png" $image_handler.compress_png_suffix) }}
-    {{ end }}
-{{ end }}
 
-<!-- 5.  开启 CDN -->
-<!-- 是否开启 CDN 选项 -->
-{{- if (and $image_handler.image_cdn_host (not .Page.Site.IsServer)) -}}
-    <!-- 文件不以 http 开头 -->
-    {{ if not (hasPrefix $img_destination "http") }}
-        <!-- image_cdn + /path/to/image.png -->
-        {{ $img_destination = (print $image_handler.image_cdn_host (path.Join $img_destination)) }}
+{{ if (not .Page.Site.IsServer) }}
+    <!-- 4. 图片压缩后缀 -->
+    {{ if $image_handler.compress_png_suffix }}
+        {{ if (strings.HasSuffix $img_destination ".png") }}
+            {{ $img_destination = (replace $img_destination ".png" $image_handler.compress_png_suffix) }}
+        {{ end }}
     {{ end }}
-{{- end -}}
-<!-- CDN END -->
+
+    <!-- 5.  开启 CDN -->
+    <!-- 是否开启 CDN 选项 -->
+    {{- if (and $image_handler.image_cdn_host ) -}}
+        <!-- 文件不以 http 开头 -->
+        {{ if not (hasPrefix $img_destination "http") }}
+            <!-- image_cdn + /path/to/image.png -->
+            {{ $img_destination = (print $image_handler.image_cdn_host (path.Join $img_destination)) }}
+        {{ end }}
+    {{- end -}}
+    <!-- CDN END -->
+{{ end }}
 
 <!--
 0. 默认情况:  
