@@ -1,8 +1,11 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 subtitle: {{ replace .TranslationBaseName "-" " " | title }}
-tags: []
-categories: []
+categories:
+  - only-one
+tags:
+  - tag01
+  - tag02
 date: "{{ .Date }}"
 lastmod: "{{ .Date }}"
 toc: true
