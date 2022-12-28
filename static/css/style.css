@@ -134,6 +134,10 @@ blockquote {
 
 }
 
+.post-content blockquote img {
+    width: 80%;
+}
+
 blockquote::before{
     /* content: "\201C"; */
     display: block;
@@ -402,6 +406,7 @@ textarea {
     padding:1em 0;
     margin: auto;
     display: block;
+    width: 90%;
 }
 .post-content ul {
     overflow: auto;
@@ -1016,7 +1021,7 @@ img.alignright {
 }
 
 .post-copyright img{
-    width: 65%;
+    width: 70%;
 }
 
 /* table*/
