@@ -1122,3 +1122,57 @@ table tbody tr td:nth-of-type(1) pre {
   background-color: #9f9f9f !important; 
 }
   
+
+/* links 友情链接 */
+ .links{
+    display: flex;
+    width: 50%;
+}
+
+.links .links-card {
+    /* background-color: #46A3FE; */
+    /* color: white; */
+    margin: 15px 15px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    transition: 0.3s;
+    width: 240px;
+    height: 120px;
+    border-radius: 5px;
+    text-align: center;
+    /* padding-top: 10px; */
+    display: flex;
+}
+
+.links-card img {
+    padding-top: 20px;
+    border-radius: 5px 5px 0 0;
+    width: 80px;
+    margin: 0 auto;
+    margin-left: 10px;
+}
+
+
+.link-content {
+    padding: 2px 16px;
+    width: 60px;
+    overflow: hidden;
+}
+
+.links-content-title {
+    /* padding: 2px 16px; */
+    font-size: 16px;
+    margin: 15px ;
+    font-weight: bolder;
+}
+
+.link-content .links-content-desc {
+    /* padding: 2px 16px; */
+    font-size: 12px;
+
+    width: 60%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
