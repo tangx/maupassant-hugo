@@ -109,6 +109,7 @@ pre {
 code {
     display: inline-block;
 }
+
 blockquote {
     display: block;
     margin-block-start: 1em;
@@ -122,9 +123,19 @@ blockquote {
     color: #555;
     border-left: none;
     background-color: #FBF9FD;
+
+
+    margin: 2em 0 ;
+    padding: 0.5em 1em;
+    /* border-left: 3px solid #11B955; */
+    border-left: 3px solid #007EDC;
+    background-color: #f9f9f9;
+    list-style: none;
+
 }
+
 blockquote::before{
-    content: "\201C";
+    /* content: "\201C"; */
     display: block;
     font-family: times;
     font-style: normal;
@@ -995,7 +1006,8 @@ img.alignright {
 .post-copyright {
     margin: 2em 0 0;
     padding: 0.5em 1em;
-    border-left: 3px solid #ff1700;
+    /* border-left: 3px solid #ff1700; */
+    border-left: 3px solid #007EDC;
     background-color: #f9f9f9;
     list-style: none;
 }
