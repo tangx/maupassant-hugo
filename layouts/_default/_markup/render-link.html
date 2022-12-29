@@ -57,4 +57,12 @@
     <!-- CDN END -->
 {{ end }}
 
-<a href="{{$file_dest|safeURL}}"><span>{{$.Text|safeHTML}}</span></a>
+<a 
+    href="{{ $file_dest | safeURL }}"
+    {{ with .Title}} title="{{ . }}"{{ end }}
+    {{ if strings.HasPrefix $file_dest "http" }} 
+        target="_blank" rel="noopener"
+    {{ end }}
+>
+    {{ .Text | safeHTML }}
+</a>
