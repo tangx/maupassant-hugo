@@ -80,8 +80,10 @@ img{
     width: auto;
     height: auto;
     max-width: 100%;
-    max-height: 100%;	
+    max-height: 100%;
+    filter: drop-shadow(2px 4px 8px #5d5d5f);
 }
+
 a, button.submit {
     color:#6E7173;
     text-decoration:none;
@@ -107,6 +109,7 @@ pre {
 code {
     display: inline-block;
 }
+
 blockquote {
     display: block;
     margin-block-start: 1em;
@@ -120,9 +123,23 @@ blockquote {
     color: #555;
     border-left: none;
     background-color: #FBF9FD;
+
+
+    margin: 2em 0 ;
+    padding: 0.5em 1em;
+    /* border-left: 3px solid #11B955; */
+    border-left: 3px solid #007EDC;
+    background-color: #f9f9f9;
+    list-style: none;
+
 }
+
+.post-content blockquote img {
+    width: 80%;
+}
+
 blockquote::before{
-    content: "\201C";
+    /* content: "\201C"; */
     display: block;
     font-family: times;
     font-style: normal;
@@ -397,6 +414,7 @@ textarea {
     padding:1em 0;
     margin: auto;
     display: block;
+    width: 90%;
 }
 .post-content ul {
     overflow: auto;
@@ -996,16 +1014,22 @@ img.alignright {
     background: #F8F8F8;
     border-bottom-color: #D26911; 
 }
+
 /* 版权声明 */
 .post-copyright {
     margin: 2em 0 0;
     padding: 0.5em 1em;
-    border-left: 3px solid #ff1700;
+    /* border-left: 3px solid #ff1700; */
+    border-left: 3px solid #007EDC;
     background-color: #f9f9f9;
     list-style: none;
 }
 .post-copyright a {
     border-bottom: 1px solid #999;
+}
+
+.post-copyright img{
+    width: 70%;
 }
 
 /* table*/
@@ -1123,3 +1147,38 @@ table tbody tr td:nth-of-type(1) pre {
   background-color: #9f9f9f !important; 
 }
   
+
+/* links 友情链接 */
+ .links{
+    display: flex;
+    flex-wrap: wrap;
+    /* width: 50%; */
+}
+
+.links .links-card {
+    background-color: #FDFCFC;
+    margin: 15px 15px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    transition: 0.3s;
+    width: 235px;
+    height: 160px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+
+.links-card img {
+    padding-top: 20px;
+    border-radius: 5px 5px 0 0;
+    width: 80px;
+    margin: 0 auto;
+    margin-left: 10px;
+}
+
+
+.links-content p {
+    /* background-color: green; */
+    /* color: red; */
+    font-weight: bolder;
+    font-size: 18px;
+}

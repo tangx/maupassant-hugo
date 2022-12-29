@@ -1,0 +1,32 @@
+{{ define "content"}}
+{{- $datetime_format := i18n "Datetime_format" -}}
+
+{{ with .Site.Params.links }}
+<section class="widget">
+  <h3 class="widget-title">{{ i18n "links" }}</h3>
+  <!-- <ul class="widget-list"> -->
+  <article class="post">
+    <div class="links">
+      {{ range . }}
+
+      <a href="{{.url}}" title="{{.title}}">
+        <div class="links-card">
+          <div class="links-card-avatar">
+            <img src="{{ .avatar }}" alt="">
+          </div>
+          <div class="links-content">
+            <!-- <h4>{{.title}}</h4> -->
+            <p>{{.title}}</p>
+          </div>
+        </div>
+      </a>
+
+      {{ end }}
+    </div>
+  </article>
+
+  <!-- </ul> -->
+</section>
+
+{{ end }}
+{{ end }}

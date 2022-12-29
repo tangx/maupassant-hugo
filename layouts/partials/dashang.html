@@ -1,0 +1,11 @@
+{{ if .Site.Params.dashang.enabled }}
+<div class="post-archive">
+  <a class="dashang" text="" href="javascript:void(0)">赞赏支持
+  </a>
+  <!-- <img src="/mp/wxpay.png" alt="">
+  <img src="/mp/alipay.png" alt=""> -->
+  <img src="{{ .Site.Params.dashang.alipay }}" alt="">
+  <img src="{{ .Site.Params.dashang.wxpay }}" alt="">
+
+</div>
+{{ end }}

@@ -10,52 +10,38 @@
 {{- $site_url := .Page.Site.BaseURL -}}
 {{- $rel_url := $site_url | relURL}}
 
-<!-- 1.3 image handlers -->
-{{- $image_handler := .Page.Site.Params.image_handler -}}
-
 <!-- 2. 去除 prefix， 并添加 **没有域名的 BaseURL ** -->
-{{ if $image_handler.workspace_prefix }}
-    {{ $prefix := $image_handler.workspace_prefix }}
-    <!-- img_destination = /prefix/static/image.png -->
-    {{ if (hasPrefix $img_destination $prefix )}}
-        <!-- img_destination = /static/image.png -->
-        {{ $img_destination = (strings.TrimPrefix $prefix $img_destination ) }}
-        <!-- img_destination = /path/to/static/image.png -->
-        {{ $img_destination = (print (path.Join $rel_url $img_destination))}}
-    {{ end }}
+{{ if and (isset .Page.Site.Params "static_prefix") }}
+{{ $prefix := .Page.Site.Params.static_prefix.name }}
+<!-- img_destination = /prefix/static/image.png -->
+{{ if (hasPrefix $img_destination $prefix )}}
+<!-- img_destination = /static/image.png -->
+{{ $img_destination = (strings.TrimPrefix $prefix $img_destination ) }}
+<!-- img_destination = /path/to/static/image.png -->
+{{ $img_destination = (print (path.Join $rel_url $img_destination))}}
+{{ end }}
 {{ end }}
 
 <!-- 3. 计算文件绝对路径 -->
 <!-- dest = ./image.png -->
 {{ if (hasPrefix $img_destination "./") }}
-    <!-- img_dest = .././image.png -->
-    {{ $img_destination = (print "../" (path.Join $img_destination)) }}
-    <!-- img_dest = /posts/<year>/<month>/<date>/<post_name>/.././image.png -->
-    {{ $img_destination = (print (path.Join .Page.RelPermalink $img_destination))}}
+<!-- img_dest = .././image.png -->
+{{ $img_destination = (print "../" (path.Join $img_destination)) }}
+<!-- img_dest = /posts/<year>/<month>/<date>/<post_name>/.././image.png -->
+{{ $img_destination = (print (path.Join .Page.RelPermalink $img_destination))}}
 {{ end }}
 
 
-{{ if (not .Page.Site.IsServer) }}
-    <!-- 4. 图片压缩后缀 -->
-    {{ if $image_handler.compress_png_suffix }}
-        {{ if not (hasPrefix $img_destination "http") }}
-            {{ if (strings.HasSuffix $img_destination ".png") }}
-                {{ $img_destination = (replace $img_destination ".png" $image_handler.compress_png_suffix) }}
-            {{ end }}
-        {{ end }}
-    {{ end }}
-
-    <!-- 5.  开启 CDN -->
-    <!-- 是否开启 CDN 选项 -->
-    {{- if (and $image_handler.image_cdn_host ) -}}
-        <!-- 文件不以 http 开头 -->
-        {{ if not (hasPrefix $img_destination "http") }}
-            <!-- image_cdn + /path/to/image.png -->
-            {{ $img_destination = (print $image_handler.image_cdn_host (path.Join $img_destination)) }}
-        {{ end }}
-    {{- end -}}
-    <!-- CDN END -->
+<!-- 4.  开启 CDN -->
+<!-- 是否开启 CDN 选项 -->
+{{- if (and .Page.Site.Params.image_cdn.enable (not .Page.Site.IsServer)) -}}
+<!-- 文件不以 http 开头 -->
+{{ if not (hasPrefix $img_destination "http") }}
+<!-- image_cdn + /path/to/image.png -->
+{{ $img_destination = (print .Page.Site.Params.image_cdn.host (path.Join $img_destination)) }}
 {{ end }}
+{{- end -}}
+<!-- CDN END -->
 
 <!--
 0. 默认情况:  
