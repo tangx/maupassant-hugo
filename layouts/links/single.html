@@ -6,22 +6,66 @@
   <h3 class="widget-title">{{ i18n "links" }}</h3>
   <!-- <ul class="widget-list"> -->
   <article class="post">
-    <div class="links">
+    <div class="post-links">
       {{ range . }}
 
-      <a href="{{.url}}" title="{{.title}}">
+      <!-- <a href="{{.url}}" title="{{.title}}">
         <div class="links-card">
           <div class="links-card-avatar">
             <img src="{{ .avatar }}" alt="">
           </div>
           <div class="links-content">
-            <!-- <h4>{{.title}}</h4> -->
             <p>{{.title}}</p>
+          </div>
+        </div>
+      </a> -->
+
+      <a href="{{.url |safeURL}}">
+        <div class="post-links-card">
+          <div class="post-links-avatar">
+            {{ if .avatar }}
+            <img src="{{.avatar |safeURL}}" alt="">
+            {{ else }}
+            <img src="https://www.haoba.cc/logo" alt="">
+            {{ end }}
+          </div>
+          <div class="post-links-content">
+            <div class="post-links-content-title">
+              <!-- <h4>{{.title}}</h4> -->
+              {{.title}}
+            </div>
+            <div class="post-links-content-description">
+              {{.description}}
+            </div>
           </div>
         </div>
       </a>
 
+      <!-- <div class="links-card-content">
+            <h3>{{ .title }}</h3>
+            <p>{{.description}}</p>
+          </div> -->
+
       {{ end }}
+      <!-- <h3>display: flex</h3>
+      <div class="display-flex">
+        <div class="div-size">1</div>
+        <div class="div-size">2</div>
+        <div class="div-size">
+          <div class="div-inner">
+            <img src="https://ttzz.eu.org/images/avatar.png" alt="">
+          </div>
+          <div class="div-inner">
+            <img src="https://ttzz.eu.org/images/avatar.png" alt="">
+          </div>
+          <div class="div-inner">
+            <img src="https://ttzz.eu.org/images/avatar.png" alt="">
+          </div>
+          <div class="div-inner">
+            <img src="https://ttzz.eu.org/images/avatar.png" alt="">
+          </div>
+        </div>
+      </div> -->
     </div>
   </article>
 
