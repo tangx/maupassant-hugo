@@ -491,7 +491,14 @@ textarea {
     background-color: rgba(27, 31, 35, .10);
     border-radius: 3px;
 }
-
+.post-content li code {
+    display:inline;
+    padding: .2em .4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(27,31,35,.10);
+    border-radius: 3px;
+}
 .post-content p {
     margin: 0 0 1.1em;
 }
@@ -1456,29 +1463,3 @@ table tbody tr td:nth-of-type(1) pre {
     font-size: 12px;
     margin: 2px 0;
 }
-/*
-.links .links-card {
-    background-color: #FDFCFC;
-    margin: 15px 15px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
-    transition: 0.3s;
-    width: 235px;
-    height: 160px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-
-.links-card img {
-    padding-top: 20px;
-    border-radius: 5px 5px 0 0;
-    width: 80px;
-    margin: 0 auto;
-    margin-left: 10px;
-}
-
-
-.links-content p {
-    font-weight: bolder;
-    font-size: 18px;
-} */
