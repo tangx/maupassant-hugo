@@ -1,25 +1,16 @@
 {{ define "content"}}
 {{- $datetime_format := i18n "Datetime_format" -}}
 
-{{ with .Site.Params.links }}
+
+
+{{ with .Page.Site.Params.links }}
 <section class="widget">
+
   <h3 class="widget-title">{{ i18n "links" }}</h3>
   <!-- <ul class="widget-list"> -->
   <article class="post">
     <div class="post-links">
       {{ range . }}
-
-      <!-- <a href="{{.url}}" title="{{.title}}">
-        <div class="links-card">
-          <div class="links-card-avatar">
-            <img src="{{ .avatar }}" alt="">
-          </div>
-          <div class="links-content">
-            <p>{{.title}}</p>
-          </div>
-        </div>
-      </a> -->
-
       <a href="{{.url |safeURL}}">
         <div class="post-links-card">
           <div class="post-links-avatar">
@@ -31,7 +22,6 @@
           </div>
           <div class="post-links-content">
             <div class="post-links-content-title">
-              <!-- <h4>{{.title}}</h4> -->
               {{.title}}
             </div>
             <div class="post-links-content-description">
@@ -41,36 +31,14 @@
         </div>
       </a>
 
-      <!-- <div class="links-card-content">
-            <h3>{{ .title }}</h3>
-            <p>{{.description}}</p>
-          </div> -->
-
       {{ end }}
-      <!-- <h3>display: flex</h3>
-      <div class="display-flex">
-        <div class="div-size">1</div>
-        <div class="div-size">2</div>
-        <div class="div-size">
-          <div class="div-inner">
-            <img src="https://ttzz.eu.org/images/avatar.png" alt="">
-          </div>
-          <div class="div-inner">
-            <img src="https://ttzz.eu.org/images/avatar.png" alt="">
-          </div>
-          <div class="div-inner">
-            <img src="https://ttzz.eu.org/images/avatar.png" alt="">
-          </div>
-          <div class="div-inner">
-            <img src="https://ttzz.eu.org/images/avatar.png" alt="">
-          </div>
-        </div>
-      </div> -->
+
     </div>
   </article>
 
-  <!-- </ul> -->
 </section>
 
 {{ end }}
+
+{{ partial "comments" . }}
 {{ end }}
