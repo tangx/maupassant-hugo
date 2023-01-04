@@ -11,29 +11,29 @@ http://player.bilibili.com/player.html?bvid=BV1Wg411t7EE&page=1
         <bilibili BV1Wg411t7EE 233>
     2. 具名模式
         <bilibili src="https://www.bilibili.com/video/BV1RK41117eY/?spm_id_from=333.1007.tianma.1-1-1.click" page="332">
-->
+-->
 
 <!-- 获取第一个参数 作为视频地址 -->
 {{- $dest := ( .Get 0) -}}
 
 <!-- 如果是具名模式， 获取 src -->
 {{ if .IsNamedParams }}
-{{ $dest = (.Get "src") }}
+    {{ $dest = (.Get "src") }}
 {{ end }}
 
 <!-- 判断是否为 全路径， 是则获取视频ID -->
 {{ if (hasPrefix $dest "http" )}}
-<!-- https://www.bilibili.com/video/BV1RK41117eY/?spm_id_from=333.1007.tianma.1-1-1.click -->
-{{ $dest = (strings.TrimPrefix "http" $dest ) }}
+    <!-- https://www.bilibili.com/video/BV1RK41117eY/?spm_id_from=333.1007.tianma.1-1-1.click -->
+    {{ $dest = (strings.TrimPrefix "http" $dest ) }}
 
-<!-- 解析 URL -->
-{{ $url := urls.Parse $dest }}
+    <!-- 解析 URL -->
+    {{ $url := urls.Parse $dest }}
 
-<!-- /video/BV1RK41117eY/ -->
-{{ $dest = $url.Path }}
+    <!-- /video/BV1RK41117eY/ -->
+    {{ $dest = $url.Path }}
 
-<!-- BV1RK41117eY -->
-{{ $dest = (path.BaseName $dest) }}
+    <!-- BV1RK41117eY -->
+    {{ $dest = (path.BaseName $dest) }}
 {{ end }}
 
 
@@ -41,17 +41,16 @@ http://player.bilibili.com/player.html?bvid=BV1Wg411t7EE&page=1
 {{- $page := (.Get 1) -}}
 
 {{ if .IsNamedParams }}
-{{ $page = (.Get "page") }}
+    {{ $page = (.Get "page") }}
 {{ end }}
 
 <!-- 默认值为 1 -->
 {{ if (not $page) }}
-{{ $page = 1 }}
+    {{ $page = 1 }}
 {{ end }}
 
 
 <!-- 嵌入 bilibili 播放框 -->
-
 <div style="margin: 10px 0 20px 0;">
   <!-- <h3>视频ID: {{ $dest }} - {{ $page }} </h3> -->
   <div style="margin: 5px 0;">
