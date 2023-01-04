@@ -1,0 +1,7 @@
+
+hooks:
+  commit-msg:
+    - husky lint-commit
+
+lint-commit:
+  email: "^(.+@gmail.com|.+@qq.com)$"
