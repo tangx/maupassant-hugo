@@ -46,25 +46,15 @@
     {{ end -}}
     <script type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <!-- Google Ads https://google.com/adsense -->
+    <!-- 谷歌广告 https://google.com/adsense -->
     {{ if .Site.Params.googleAd }}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ .Site.Params.googleAd }}"
   crossorigin="anonymous"></script>
     {{ end }}
 
-    {{ if .Site.Params.googleTag }}
-    <!-- Google tag (gtag.js) https://analytics.google.com/ -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleTag }}"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+    <!-- 站点分析 -->
+    {{ partial "site_analytics" .}}
 
-        gtag('config', '{{ .Site.Params.googleTag }}');
-    </script>
-    {{ end }}
-
-    
     {{if .Site.Params.fancybox }}
         <link href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" rel="stylesheet">
     {{ end }}
