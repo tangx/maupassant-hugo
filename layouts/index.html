@@ -1,6 +1,25 @@
 {{ define "content"}}
 <div class="res-cons">
   {{- $paginator := .Paginate (where .Site.RegularPages "Type" "in" (slice "post" "posts")) }}
+  <div>
+    {{ range $index,$data := $paginator.Pages }}
+    {{if .Params.pinTop }}
+    <article class="post">
+      <header>
+        <h1 class="post-title">
+          <a href="{{ .Permalink }}" title="{{ .Title }}" target="_blank">
+            <span>
+              <span style="color: brown;">[置顶]</span>{{ .Title }}
+            </span>
+          </a>
+        </h1>
+      </header>
+      {{ partial "post-meta.html" . }}
+
+    </article>
+    {{ end }}
+    {{ end }}
+  </div>
   {{ range $index,$data := $paginator.Pages }}
   {{if not .Params.hiddenFromHomePage }}
   <article class="post">
@@ -14,8 +33,6 @@
       {{ .Summary }}……
     </div>
     <p class="readmore"><a href="{{ .Permalink }}" target="_blank">{{ i18n "continueReading" }}</a></p>
-
-
   </article>
   {{ end }}
   {{ end }}
