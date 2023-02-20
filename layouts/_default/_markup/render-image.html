@@ -39,6 +39,7 @@
     <!-- 4. 图片压缩后缀 -->
     {{ if $image_handler.compress_png_suffix }}
         {{ if not (hasPrefix $img_destination "http") }}
+            <!-- png 图片压缩 -->
             {{ if (strings.HasSuffix $img_destination ".png") }}
                 {{ $img_destination = (replace $img_destination ".png" $image_handler.compress_png_suffix) }}
             {{ end }}
@@ -52,6 +53,13 @@
         {{ if not (hasPrefix $img_destination "http") }}
             <!-- image_cdn + /path/to/image.png -->
             {{ $img_destination = (print $image_handler.image_cdn_host (path.Join $img_destination)) }}
+
+            <!-- 水印版本 -->
+            {{ if not (strings.HasSuffix $img_destination ".gif") }}
+                <!-- image.png ... image.png!v1 -->
+                {{ $img_destination = (print $img_destination $image_handler.watermark_version) }}
+            {{ end }}
+
         {{ end }}
     {{- end -}}
     <!-- CDN END -->
